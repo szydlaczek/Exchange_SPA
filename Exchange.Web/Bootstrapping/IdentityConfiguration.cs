@@ -12,7 +12,7 @@ namespace Exchange.Web.Bootstrapping
 {
     internal static class IdentityConfiguration
     {
-        public static IServiceCollection AddIdentity(this IServiceCollection services)
+        public static IServiceCollection AddCustomIdentity(this IServiceCollection services)
         {
             services
                 .AddSingleton<IRoleStore<Role>, CustomRoleStore>()

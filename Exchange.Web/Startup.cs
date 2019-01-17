@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using System.Reflection;
 using MediatR;
+using Exchange.Web.Bootstrapping;
 
 namespace Exchange.Web
 {
@@ -30,7 +31,11 @@ namespace Exchange.Web
                 options.UseSqlServer(Configuration.GetConnectionString("ExchangeDb")));
 
             services.AddMediatR(typeof(RegisterUserCommandHandler).GetTypeInfo().Assembly);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services
+                .AddCustomIdentity()
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -53,8 +58,8 @@ namespace Exchange.Web
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
-            app.UseMvc(routes =>
+            app.UseAuthentication()
+            .UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
