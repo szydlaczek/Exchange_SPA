@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Exchange.Application\Exchange.Application.csproj" />
+    <ProjectReference Include="..\Exchange.Common\Exchange.Common.csproj" />
+  </ItemGroup>
+
+</Project>
